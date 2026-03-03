@@ -10,128 +10,194 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        .nosotros-container {
+        /* NAVEGACIÓN Y LOGO (Unificado con Index) */
+        .nav-logo-img {
+            height: 150px; 
+            width: auto;
+            padding: 10px 0;
+            display: block;
+        }
+
+        .navbar {
+            padding: 0.5rem 5%;
+            min-height: 120px;
             display: flex;
-            flex-wrap: wrap;
+            justify-content: space-between;
             align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--negro-mate);
+            font-size: 1.3rem; 
+            font-weight: 600;
+        }
+
+        /* DISEÑO DE LA SECCIÓN NOSOTROS */
+        .nosotros-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
             padding: 5rem 5%;
+            align-items: center;
             background-color: var(--blanco);
         }
-        .nosotros-texto {
-            flex: 1 1 500px;
-            padding: 20px;
+
+        .nosotros-imagen-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 20px 20px 0px var(--rosa-palo); /* Efecto decorativo */
         }
+
         .nosotros-texto h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--rosa-palo);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
+
         .nosotros-texto p {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            color: #555;
-            text-align: justify;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #444;
         }
-        .nosotros-imagen {
-            flex: 1 1 400px;
-            padding: 20px;
-            text-align: center;
+
+        .destaque-oro {
+            color: var(--oro);
+            font-weight: 700;
         }
-        .nosotros-imagen img {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 5px solid var(--rosa-claro);
-        }
+
+        /* Valores */
         .valores-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            padding: 4rem 5%;
+            padding: 5rem 5%;
             background-color: var(--rosa-claro);
-            text-align: center;
         }
+
         .valor-card {
-            background: var(--blanco);
-            padding: 30px;
-            border-radius: 8px;
-            border-top: 4px solid var(--rosa-palo);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+            background: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
-        .valor-card:hover {
-            transform: translateY(-5px);
-        }
+
         .valor-card i {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             color: var(--oro);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 992px) {
+            .nosotros-wrapper { grid-template-columns: 1fr; text-align: center; }
+            .nosotros-imagen-container img { max-width: 500px; margin: 0 auto; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-logo-img { height: 100px; }
+            .nav-links a { font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="top-banner">
-        <p>✨ Tu belleza, nuestra pasión | Visítanos en San Mateo Atenco ✨</p>
-    </div>
+    <header>
+        <div class="top-banner">
+            <p>✨ Distribuidores de Küül y KolorShot | Envíos y asesoría profesional ✨</p>
+        </div>
 
-    <nav class="navbar">
-        <a href="index.html" style="text-decoration: none;">
-            <img src="logos/logo-sin-fondo.png" alt="MAYA" class="nav-logo-img" style="color: var(--blanco); font-size: 1.8rem; font-weight: bold; letter-spacing: 2px;">
-        </a>
-        <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="productos.html">Catálogos</a></li>
-            <li><a href="nosotros.html" style="color: var(--blanco);">Nosotros</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-    </nav>
-
-    <header style="background-color: var(--negro-mate); color: var(--blanco); text-align: center; padding: 60px 20px;">
-        <h1 style="font-size: 3rem; letter-spacing: 3px; color: var(--rosa-palo);">Nuestra Esencia</h1>
-        <p style="font-family: 'Arial', sans-serif; font-size: 1.2rem; margin-top: 10px; max-width: 600px; margin-left: auto; margin-right: auto;">Conoce al equipo y la pasión detrás de Maya Productos de Belleza.</p>
+        <nav class="navbar">
+            <a href="index.html">
+                <img src="logos/logo-sin-fondo.png" alt="Maya Belleza Logo" class="nav-logo-img">
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="productos.html">Catálogos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <section class="nosotros-container">
-        <div class="nosotros-texto">
-            <h2>Pasión por el Estilismo Profesional</h2>
-            <p>En <strong>Maya Productos de Belleza</strong> entendemos que el cuidado personal y el estilismo no son solo rutinas, son formas de expresión. Ubicados en el corazón de San Mateo Atenco, nacimos con una misión clara: acercar los mejores productos de calidad de salón tanto a profesionales de la belleza como a quienes aman cuidarse en casa.</p>
-            <p>Somos orgullosos distribuidores de líneas líderes en el mercado como <strong>Küül Color System y KolorShot Profesional</strong>. Nuestro compromiso va más allá de entregar un producto; buscamos brindar una asesoría cercana, asegurándonos de que cada tinte, tratamiento o cosmético que te lleves, sea el ideal para resaltar tu esencia.</p>
-            <p>Ya sea que busques equipar tu estética o encontrar tu tono perfecto, en Maya siempre encontrarás calidad, variedad y una sonrisa dispuesta a ayudarte.</p>
-        </div>
-        <div class="nosotros-imagen">
-            <img src="productos/foto-nosotros.jpg" alt="Local Maya Productos de Belleza">
-        </div>
-    </section>
+    <main>
+        <section class="nosotros-wrapper">
+            <div class="nosotros-imagen-container">
+                <img src="productos/foto-nosotros.jpg" alt="Equipo Maya Productos de Belleza">
+            </div>
+            
+            <div class="nosotros-texto">
+                <h2>Nuestra Historia</h2>
+                <p>En <span class="destaque-oro">Maya Productos de Belleza</span>, nacimos con la misión de acercar la más alta calidad en colorimetría y cuidado capilar tanto a profesionales como a personas que buscan resultados de salón en casa.</p>
+                <p>Como distribuidores autorizados de marcas líderes como <span class="destaque-oro">Küül</span> y <span class="destaque-oro">KolorShot</span>, nos hemos consolidado en el Estado de México por nuestra honestidad, asesoría experta y compromiso con la belleza real.</p>
+                <p>Nuestra pasión es brindarte las herramientas necesarias para que cada transformación sea un éxito, garantizando productos originales y una atención personalizada que marca la diferencia.</p>
+            </div>
+        </section>
 
-    <section class="valores-grid">
-        <div class="valor-card">
-            <i class="fas fa-award"></i>
-            <h3>Calidad Garantizada</h3>
-            <p>Trabajamos solo con marcas reconocidas y fórmulas probadas por expertos en cosmetología y colorimetría.</p>
-        </div>
-        <div class="valor-card">
-            <i class="fas fa-comments"></i>
-            <h3>Asesoría Cercana</h3>
-            <p>No solo vendemos, te acompañamos en tu decisión para que obtengas los resultados que realmente esperas.</p>
-        </div>
-        <div class="valor-card">
-            <i class="fas fa-heart"></i>
-            <h3>Compromiso Local</h3>
-            <p>Somos una empresa orgullosamente establecida en el Estado de México, impulsando la belleza en nuestra comunidad.</p>
-        </div>
-    </section>
+        <section class="valores-grid">
+            <div class="valor-card">
+                <i class="fas fa-gem"></i>
+                <h3>Calidad Garantizada</h3>
+                <p>Solo ofrecemos productos de marcas líderes, asegurando resultados profesionales en cada aplicación.</p>
+            </div>
+            <div class="valor-card">
+                <i class="fas fa-award"></i>
+                <h3>Experiencia</h3>
+                <p>Nuestro equipo conoce a fondo cada línea para brindarte la mejor asesoría técnica en color y cuidado.</p>
+            </div>
+            <div class="valor-card">
+                <i class="fas fa-truck"></i>
+                <h3>Servicio Ágil</h3>
+                <p>Atención inmediata y envíos eficientes para que tu negocio o rutina de belleza nunca se detenga.</p>
+            </div>
+        </section>
+    </main>
 
-<a href="https://wa.me/527228603383?text=%C2%A1Hola%2C%20qu%C3%A9%20tal!%20Visit%C3%A9%20su%20p%C3%A1gina%20web%20y%20me%20gustar%C3%ADa%20platicar%20con%20ustedes%20para%20cotizar%20algunas%20cosas%20de%20K%C3%BC%C3%BCl%20y%20KolorShot.%20%C2%BFTienen%20un%20momentito%3F%20%E2%9C%82%EF%B8%8F" class="btn-whatsapp" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-</a>
-
-    <footer>
-        <p><strong>Maya Productos de Belleza</strong></p>
-        <p>Av. Lic. Benito Juárez 316, San Mateo Atenco</p>
-        <p class="copyright">Desarrollado por MEXIA Digital &copy; 2026</p>
+    <footer style="background-color: var(--negro-mate); color: var(--blanco); padding: 4rem 5% 2rem 5%;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px;">
+            <div>
+                <img src="logos/logo-sin-fondo.png" alt="Maya" style="height: 100px; filter: brightness(0) invert(1); margin-bottom: 20px;">
+                <p style="font-size: 0.9rem; color: #bbb;">Tu aliado profesional en productos capilares. Distribuidores oficiales en el Estado de México.</p>
+            </div>
+            <div>
+                <h4 style="color: var(--rosa-palo); margin-bottom: 20px;">Explorar</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="index.html" style="color: #bbb; text-decoration: none;">Inicio</a></li>
+                    <li><a href="nosotros.html" style="color: #bbb; text-decoration: none;">Nosotros</a></li>
+                    <li><a href="productos.html" style="color: #bbb; text-decoration: none;">Catálogos</a></li>
+                    <li><a href="contacto.html" style="color: #bbb; text-decoration: none;">Contacto</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color: var(--rosa-palo); margin-bottom: 20px;">Contacto</h4>
+                <p style="color: #bbb; margin-bottom: 10px;"><i class="fas fa-phone-alt" style="color: var(--oro); margin-right: 10px;"></i> 722 860 3383</p>
+                <p style="color: #bbb;"><i class="fas fa-envelope" style="color: var(--oro); margin-right: 10px;"></i> productosdebellezamaya@gmail.com</p>
+            </div>
+            <div>
+                <h4 style="color: var(--rosa-palo); margin-bottom: 20px;">Síguenos</h4>
+                <div style="display: flex; gap: 20px;">
+                    <a href="https://www.facebook.com/people/Maya-Productos-de-Belleza/61586921962355/" target="_blank" style="color: white; font-size: 1.8rem;"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/mayaproductosbelleza?igsh=MWtkOWV3eDN0MDk5dQ==" target="_blank" style="color: white; font-size: 1.8rem;"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/527228603383?text=Hola,%20qu%C3%A9%20tal!%20Visit%C3%A9%20su%20p%C3%A1gina%20web%20y%20me%20gustar%C3%ADa%20cotizar%20algunos%20productos%20de%20belleza" target="_blank" style="color: white; font-size: 1.8rem;"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr style="border: 0; border-top: 1px solid #444; margin-bottom: 20px;">
+        <p style="text-align: center; font-size: 0.8rem; color: #777;">&copy; 2026 Maya Productos de Belleza. Todos los derechos reservados.</p>
     </footer>
+
+    <a href="https://wa.me/527228603383?text=Hola,%20qu%C3%A9%20tal!%20Visit%C3%A9%20su%20p%C3%A1gina%20web%20y%20me%20gustar%C3%ADa%20cotizar%20algunos%20productos%20de%20belleza" 
+       class="whatsapp-float" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script src="app.js"></script>
 </body>

@@ -3,86 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Maya Productos de Belleza - Distribuidores autorizados de Küül y KolorShot en el Estado de México. Calidad profesional para tu cabello.">
     <title>Maya Productos de Belleza | Inicio</title>
     
     <link rel="stylesheet" href="estilos.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* LOGO Y NAVEGACIÓN MEJORADOS */
+        .nav-logo-img {
+            height: 150px; 
+            width: auto;
+            padding: 10px 0;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+        .navbar {
+            padding: 0.5rem 5%;
+            height: auto; 
+            min-height: 120px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* AJUSTE DE TAMAÑO DE MENÚ */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px; /* Más espacio entre opciones */
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--negro-mate);
+            font-size: 1.3rem; /* Menú más grande y legible */
+            font-weight: 600;  /* Un poco más de grosor */
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--blanco);
+        }
+
+        /* Hero Banner */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            min-height: 450px;
+            background: url('productos/hero-catalogo.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        @media (max-width: 768px) {
+            .nav-logo-img { height: 100px; }
+            .navbar { min-height: 100px; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .nav-links a { font-size: 1.1rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <div class="top-banner">
-        <p>✨ Distribuidores de Küül y KolorShot | Asesoría profesional por WhatsApp ✨</p>
-    </div>
-
-    <nav class="navbar">
-        <a href="index.html" style="text-decoration: none;">
-            <img src="logos/logo-sin-fondo.png" alt="MAYA" class="nav-logo-img" style="color: var(--blanco); font-size: 1.8rem; font-weight: bold; letter-spacing: 2px;">
-        </a>
-        
-        <div class="menu-toggle" id="mobile-menu">
-            <i class="fas fa-bars"></i>
+    <header>
+        <div class="top-banner">
+            <p>✨ Distribuidores de Küül y KolorShot | Envíos y asesoría profesional ✨</p>
         </div>
 
-        <ul class="nav-links" id="nav-links">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="productos.html">Catálogo</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-    </nav>
-
-    <header class="hero-banner">
-        <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=1920&auto=format&fit=crop" alt="Promoción Maya" class="hero-bg">
-        
-        <div class="hero-overlay">
-            <div class="hero-caja">
-                <h2>NUEVA COLECCIÓN</h2>
-                <h1>Color System Profesional</h1>
-                <p>Descubre los tintes Küül y tratamientos KolorShot que los expertos recomiendan.</p>
-                <a href="productos.html" class="btn-principal">Comprar Ahora</a>
+        <nav class="navbar" aria-label="Navegación principal">
+            <a href="index.html">
+                <img src="logos/logo-sin-fondo.png" alt="Maya Belleza Logo" class="nav-logo-img">
+            </a>
+            
+            <div class="menu-toggle" id="mobile-menu" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
             </div>
-        </div>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="productos.html">Catálogos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <section class="seccion-categorias">
-        <h2>Compra por Categoría</h2>
-        <div class="grid-categorias-visuales">
-            
-            <a href="productos.html" class="cat-visual-item">
-                <div class="cat-img-wrapper">
-                    <img src="productos/foto-cabello.jpg" alt="Capilar">
-                </div>
-                <h3>Cabello</h3>
-            </a>
-            
-            <a href="productos.html" class="cat-visual-item">
-                <div class="cat-img-wrapper">
-                    <img src="productos/foto-maquillaje.jpg" alt="Cosméticos">
-                </div>
-                <h3>Maquillaje</h3>
-            </a>
-            
-            <a href="productos.html" class="cat-visual-item">
-                <div class="cat-img-wrapper">
-                    <img src="productos/foto-unas.jpg" alt="Uñas">
-                </div>
-                <h3>Uñas y Pestañas</h3>
-            </a>
+    <main>
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>Tu Belleza, Nuestra Pasión</h1>
+                <p>Expertos en colorimetría y cuidado capilar profesional. Calidad que transforma tu estilo.</p>
+                <a href="productos.html" class="btn-principal" style="font-size: 1.1rem; padding: 15px 35px;">Ver Catálogos</a>
+            </div>
+        </section>
 
-        </div>
-    </section>
+        <section class="seccion-categorias">
+            <h2 style="text-align: center; margin-top: 50px; color: var(--rosa-palo); font-size: 2.2rem;">Nuestras Líneas</h2>
+            <div class="grid-categorias-visuales">
+                <a href="productos.html" class="cat-visual-item">
+                    <div class="cat-img-wrapper"><img src="productos/foto-cabello.jpg" alt="Cabello"></div>
+                    <h3>Cabello</h3>
+                </a>
+                <a href="productos.html" class="cat-visual-item">
+                    <div class="cat-img-wrapper"><img src="productos/foto-maquillaje.jpg" alt="Maquillaje"></div>
+                    <h3>Maquillaje</h3>
+                </a>
+                <a href="productos.html" class="cat-visual-item">
+                    <div class="cat-img-wrapper"><img src="productos/foto-unas.jpg" alt="Uñas"></div>
+                    <h3>Uñas y Pestañas</h3>
+                </a>
+            </div>
+        </section>
+    </main>
 
-<a href="https://wa.me/527228603383?text=%C2%A1Hola%2C%20qu%C3%A9%20tal!%20Visit%C3%A9%20su%20p%C3%A1gina%20web%20y%20me%20gustar%C3%ADa%20platicar%20con%20ustedes%20para%20cotizar%20algunas%20cosas%20de%20K%C3%BC%C3%BCl%20y%20KolorShot.%20%C2%BFTienen%20un%20momentito%3F%20%E2%9C%82%EF%B8%8F" class="btn-whatsapp" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-</a>
-
-    <footer>
-        <p><strong>Maya Productos de Belleza</strong></p>
-        <p>Av. Lic. Benito Juárez 316, San Mateo Atenco</p>
-        <p class="copyright">Desarrollado por MEXIA Digital &copy; 2026</p>
-    </footer>
-
-    <script src="app.js"></script>
-</body>
-</html>
+    <footer style="background-color: var(--negro-mate); color: var(--blanco); padding: 4rem 5% 2rem 5%; margin-top: 50px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px;">
+            <div>
+                <img src="logos/logo-sin-fondo.png" alt="Maya" style="height: 100px; filter: brightness(0) invert(1); margin-bottom: 20px;">
+                <p style="font-size: 0.9rem; color: #bbb;">Tu aliado profesional en productos capilares. Distribuidores oficiales en el Estado de México.</p>
+            </div>
+            <div>
+                <h4 style="color: var(--rosa-palo); margin-bottom: 20px;">Explorar</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="index.html" style="color: #bbb; text-decoration: none;">Inicio</a></li>
+                    <li><a href="nosotros.html" style="color: #bbb; text-decoration: none;">Nosotros</a></li>
+                    <li><a href="productos.html" style="color: #bbb; text-decoration: none;">Catálogos</a></li>
+                    <li><a href="contacto.html" style="color: #bbb; text-decoration: none;">Contacto</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="color: var(--rosa-palo); margin-bottom: 20px;">Contacto</h4>
+                <p style="color: #bbb; margin-bottom: 10px;"><i class="fas fa-phone-alt" style="color: var(--oro); margin-right: 10px;"></i> 722 860 3383</p>
+                <p style="color: #bbb;"><i class="fas fa-envelope" style="color: var(--oro); margin-right: 10px;"></i> productosdebellezamaya@gmail.com</p>
+            </div>
+            <div>
+                <h4 style="color: var(--rosa-palo); margin-bottom: 20px;">Síguenos</h4>
+                <div style="display: flex; gap: 20px;">
+                    <a href="https://www.facebook.com/people/Maya-Productos-de-Belleza/61586921962355/" target="_blank" style="color: white; font-size: 1.8rem;"><i class="fab fa-facebook"></i></a>
