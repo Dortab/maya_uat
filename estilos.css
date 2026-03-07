@@ -7,7 +7,7 @@
     --fuente-principal: 'Playfair Display', serif;
 }
 
-/* Configuración General */
+/* --- Configuración General --- */
 html {
     scroll-behavior: smooth;
 }
@@ -25,7 +25,7 @@ body {
     line-height: 1.6;
 }
 
-/* --- Navegación --- */
+/* --- Barra Superior --- */
 .top-banner {
     background-color: var(--negro-mate);
     color: var(--blanco);
@@ -34,6 +34,7 @@ body {
     font-size: 0.9rem;
 }
 
+/* --- Navegación Principal --- */
 .navbar {
     background-color: var(--rosa-palo);
     padding: 1rem 5%;
@@ -41,150 +42,165 @@ body {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.nav-logo-img {
-    height: 50px;
-    transition: transform 0.3s ease;
-}
-
-.nav-logo-img:hover {
-    transform: scale(1.05);
+    position: relative; /* Importante para el menú móvil */
 }
 
 .nav-links {
-    list-style: none;
     display: flex;
-    gap: 25px;
+    list-style: none;
+    gap: 35px;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: var(--blanco);
+    color: var(--negro-mate);
+    font-size: 1.1rem;
     font-weight: 600;
-    transition: 0.3s;
+    transition: color 0.3s;
 }
 
 .nav-links a:hover {
-    color: var(--negro-mate);
+    color: var(--blanco);
 }
 
-/* Menú Móvil */
+/* --- Botón del Menú (Oculto en PC) --- */
 .menu-toggle {
     display: none;
-    color: var(--blanco);
-    font-size: 1.5rem;
+    color: var(--negro-mate); /* Contrastará perfecto con el rosa palo */
+    font-size: 1.8rem;
     cursor: pointer;
 }
 
+/* --- RESPONSIVE: MENÚ MÓVIL --- */
 @media (max-width: 768px) {
-    .menu-toggle { display: block; }
+    .menu-toggle {
+        display: block; /* Muestra las 3 rayitas en celular */
+    }
+
     .nav-links {
-        display: none;
+        display: none; /* Oculto por defecto */
         flex-direction: column;
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
         background-color: var(--rosa-palo);
-        padding: 20px;
+        padding: 20px 0;
         text-align: center;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        z-index: 999;
     }
-    .nav-links.active { display: flex; }
+
+    /* Esta clase la activa tu archivo app.js */
+    .nav-links.active {
+        display: flex; 
+    }
+
+    .nav-links li {
+        padding: 15px 0;
+    }
 }
 
-/* --- Secciones Principales --- */
-.seccion-categorias {
-    padding: 4rem 5%;
-    text-align: center;
+/* --- Categorías Visuales (Las tarjetas redondas del Inicio) --- */
+.grid-categorias-visuales { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 30px; 
+    padding: 2rem 5%; 
 }
 
-.grid-categorias-visuales {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
+.cat-visual-item { 
+    text-decoration: none; 
+    color: var(--negro-mate); 
+    text-align: center; 
+    transition: transform 0.3s; 
 }
 
-.cat-visual-item {
-    text-decoration: none;
-    color: var(--negro-mate);
-    transition: 0.3s;
+.cat-visual-item:hover { 
+    transform: translateY(-10px); 
+    color: var(--oro); 
 }
 
-.cat-img-wrapper {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto 15px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 5px solid var(--blanco);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+.cat-img-wrapper { 
+    width: 200px; 
+    height: 200px; 
+    margin: 0 auto 15px; 
+    border-radius: 50%; 
+    overflow: hidden; 
+    border: 5px solid var(--blanco); 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
 }
 
-.cat-img-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.cat-img-wrapper img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
 }
 
-/* --- Tarjetas de Productos (JS) --- */
-#contenedor-productos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    padding: 2rem 5%;
+/* --- Tarjetas de Productos Dinámicas (JS / CSV) --- */
+#contenedor-productos { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 25px; 
+    padding: 2rem 5%; 
 }
 
-.tarjeta-categoria {
-    background: var(--blanco);
-    padding: 25px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    transition: transform 0.3s;
+.tarjeta-categoria { 
+    background: var(--blanco); 
+    padding: 25px; 
+    border-radius: 12px; 
+    text-align: center; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+    transition: transform 0.3s; 
 }
 
-.tarjeta-categoria:hover { transform: translateY(-8px); }
-
-.tarjeta-categoria img {
-    max-width: 100%;
-    height: 200px;
-    object-fit: contain;
-    margin-bottom: 15px;
+.tarjeta-categoria:hover { 
+    transform: translateY(-8px); 
 }
 
-.btn-principal {
-    display: inline-block;
-    background-color: var(--oro);
-    color: white;
-    padding: 12px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    margin-top: 10px;
-    transition: 0.3s;
+.tarjeta-categoria img { 
+    max-width: 100%; 
+    height: 200px; 
+    object-fit: contain; 
+    margin-bottom: 15px; 
 }
 
-.btn-principal:hover { background-color: #b8952d; }
+/* --- Botones Generales --- */
+.btn-principal { 
+    display: inline-block; 
+    background-color: var(--negro-mate); 
+    color: var(--blanco); 
+    padding: 10px 20px; 
+    text-decoration: none; 
+    border-radius: 5px; 
+    transition: background 0.3s; 
+    font-weight: bold;
+}
 
-/* WhatsApp Flotante */
-.whatsapp-float {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background: #25d366;
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    box-shadow: 2px 4px 10px rgba(0,0,0,0.3);
-    z-index: 2000;
-    text-decoration: none;
+.btn-principal:hover { 
+    background-color: var(--oro); 
+}
+
+/* --- Botón WhatsApp Flotante --- */
+.whatsapp-float { 
+    position: fixed; 
+    bottom: 30px; 
+    right: 30px; 
+    background-color: #25D366; 
+    color: white; 
+    border-radius: 50%; 
+    width: 60px; 
+    height: 60px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 30px; 
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2); 
+    z-index: 1000; 
+    transition: transform 0.3s; 
+    text-decoration: none; 
+}
+
+.whatsapp-float:hover { 
+    transform: scale(1.1); 
 }

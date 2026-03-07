@@ -26,85 +26,79 @@
             align-items: center;
         }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 35px;
-        }
+        /* ¡PASO 1 APLICADO! 
+           Se eliminó la regla .nav-links que bloqueaba el menú en celulares.
+           Ahora respetará el responsive de tu archivo estilos.css */
 
         .nav-links a {
             text-decoration: none;
             color: var(--negro-mate);
-            font-size: 1.3rem; 
+            font-size: 1.1rem;
             font-weight: 600;
+            transition: color 0.3s;
         }
 
-        /* DISEÑO DE LA SECCIÓN NOSOTROS */
-        .nosotros-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            padding: 5rem 5%;
-            align-items: center;
+        .nav-links a:hover {
+            color: var(--blanco);
+        }
+
+        /* --- ESTILOS ESPECÍFICOS DE NOSOTROS --- */
+        .nosotros-header {
+            background-color: var(--negro-mate);
+            color: var(--blanco);
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .nosotros-header h1 {
+            color: var(--oro);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-family: var(--fuente-principal);
+        }
+
+        .contenido-nosotros {
+            padding: 50px 5%;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
             background-color: var(--blanco);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-top: 40px;
+            margin-bottom: 40px;
         }
 
-        .nosotros-imagen-container img {
-            width: 100%;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 20px 20px 0px var(--rosa-palo); /* Efecto decorativo */
-        }
-
-        .nosotros-texto h2 {
-            font-size: 3rem;
+        .contenido-nosotros h2 {
             color: var(--rosa-palo);
             margin-bottom: 25px;
+            font-family: var(--fuente-principal);
         }
-
-        .nosotros-texto p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            color: #444;
-        }
-
-        .destaque-oro {
-            color: var(--oro);
-            font-weight: 700;
-        }
-
-        /* Valores */
-        .valores-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            padding: 5rem 5%;
-            background-color: var(--rosa-claro);
-        }
-
-        .valor-card {
-            background: white;
-            padding: 40px;
-            text-align: center;
+        
+        /* Estilo para la foto de nosotros */
+        .img-nosotros {
+            width: 100%;
+            max-width: 650px;
+            height: auto;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            margin: 0 auto 30px auto;
+            display: block;
+            border: 4px solid var(--blanco);
         }
 
-        .valor-card i {
-            font-size: 3.5rem;
-            color: var(--oro);
-            margin-bottom: 20px;
-        }
-
-        @media (max-width: 992px) {
-            .nosotros-wrapper { grid-template-columns: 1fr; text-align: center; }
-            .nosotros-imagen-container img { max-width: 500px; margin: 0 auto; }
+        .contenido-nosotros p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: #555;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
         }
 
         @media (max-width: 768px) {
             .nav-logo-img { height: 100px; }
-            .nav-links a { font-size: 1.1rem; }
+            .navbar { min-height: 100px; }
+            .img-nosotros { margin-bottom: 20px; }
         }
     </style>
 </head>
@@ -115,10 +109,15 @@
             <p>✨ Distribuidores de Küül y KolorShot | Envíos y asesoría profesional ✨</p>
         </div>
 
-        <nav class="navbar">
+        <nav class="navbar" aria-label="Navegación principal">
             <a href="index.html">
                 <img src="logos/logo-sin-fondo.png" alt="Maya Belleza Logo" class="nav-logo-img">
             </a>
+            
+            <div class="menu-toggle" id="mobile-menu" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </div>
+
             <ul class="nav-links" id="nav-links">
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="nosotros.html">Nosotros</a></li>
@@ -129,35 +128,19 @@
     </header>
 
     <main>
-        <section class="nosotros-wrapper">
-            <div class="nosotros-imagen-container">
-                <img src="productos/foto-nosotros.jpg" alt="Equipo Maya Productos de Belleza">
-            </div>
-            
-            <div class="nosotros-texto">
-                <h2>Nuestra Historia</h2>
-                <p>En <span class="destaque-oro">Maya Productos de Belleza</span>, nacimos con la misión de acercar la más alta calidad en colorimetría y cuidado capilar tanto a profesionales como a personas que buscan resultados de salón en casa.</p>
-                <p>Como distribuidores autorizados de marcas líderes como <span class="destaque-oro">Küül</span> y <span class="destaque-oro">KolorShot</span>, nos hemos consolidado en el Estado de México por nuestra honestidad, asesoría experta y compromiso con la belleza real.</p>
-                <p>Nuestra pasión es brindarte las herramientas necesarias para que cada transformación sea un éxito, garantizando productos originales y una atención personalizada que marca la diferencia.</p>
-            </div>
+        <section class="nosotros-header">
+            <h1>Nuestra Historia</h1>
+            <p>Conoce más sobre Maya Productos de Belleza y nuestra pasión por el cuidado capilar y estético.</p>
         </section>
 
-        <section class="valores-grid">
-            <div class="valor-card">
-                <i class="fas fa-gem"></i>
-                <h3>Calidad Garantizada</h3>
-                <p>Solo ofrecemos productos de marcas líderes, asegurando resultados profesionales en cada aplicación.</p>
-            </div>
-            <div class="valor-card">
-                <i class="fas fa-award"></i>
-                <h3>Experiencia</h3>
-                <p>Nuestro equipo conoce a fondo cada línea para brindarte la mejor asesoría técnica en color y cuidado.</p>
-            </div>
-            <div class="valor-card">
-                <i class="fas fa-truck"></i>
-                <h3>Servicio Ágil</h3>
-                <p>Atención inmediata y envíos eficientes para que tu negocio o rutina de belleza nunca se detenga.</p>
-            </div>
+        <section class="contenido-nosotros">
+            <h2>¿Quiénes Somos?</h2>
+            
+            <img src="productos/foto-nosotros.jpg" alt="Equipo de Maya Productos de Belleza" class="img-nosotros">
+
+            <p>En <strong>Maya Productos de Belleza</strong> somos distribuidores autorizados en el Estado de México de las mejores marcas profesionales como Küül y KolorShot.</p>
+            <p>Nuestro compromiso es brindar a profesionales de la belleza y a nuestros clientes productos de la más alta calidad, acompañados de la asesoría que necesitan para lograr resultados espectaculares y cuidar la salud capilar.</p>
+            <p>Creemos firmemente que la belleza es una herramienta de expresión y confianza, por lo que trabajamos todos los días para poner a tu alcance las últimas tendencias en colorimetría, maquillaje y cuidado personal.</p>
         </section>
     </main>
 
@@ -191,11 +174,10 @@
             </div>
         </div>
         <hr style="border: 0; border-top: 1px solid #444; margin-bottom: 20px;">
-        <p style="text-align: center; font-size: 0.8rem; color: #777;">&copy; 2026 Maya Productos de Belleza. Todos los derechos reservados.</p>
+        <p style="text-align: center; color: #888; font-size: 0.9rem;">&copy; 2024 Maya Productos de Belleza. Todos los derechos reservados.</p>
     </footer>
 
-    <a href="https://wa.me/527228603383?text=Hola,%20qu%C3%A9%20tal!%20Visit%C3%A9%20su%20p%C3%A1gina%20web%20y%20me%20gustar%C3%ADa%20cotizar%20algunos%20productos%20de%20belleza" 
-       class="whatsapp-float" target="_blank" rel="noopener">
+    <a href="https://wa.me/527228603383?text=Hola,%20qu%C3%A9%20tal!%20Me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20productos" class="whatsapp-float" target="_blank" aria-label="Chat en WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 

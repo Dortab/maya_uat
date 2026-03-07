@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogos Oficiales | Maya Productos de Belleza</title>
+    <title>Catálogos y Productos | Maya Productos de Belleza</title>
     
     <link rel="stylesheet" href="estilos.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* NAVEGACIÓN Y LOGO (Homologado) */
+        /* NAVEGACIÓN Y LOGO HOMOLOGADO */
         .nav-logo-img {
             height: 150px; 
             width: auto;
             padding: 10px 0;
             display: block;
         }
+
         .navbar {
             padding: 0.5rem 5%;
             min-height: 120px;
@@ -24,24 +25,28 @@
             justify-content: space-between;
             align-items: center;
         }
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 35px;
-        }
+
+        /* ¡PASO 1 APLICADO! 
+           Se eliminó la regla .nav-links que bloqueaba el menú en celulares. */
+        
         .nav-links a {
             text-decoration: none;
             color: var(--negro-mate);
-            font-size: 1.3rem; 
+            font-size: 1.1rem;
             font-weight: 600;
+            transition: color 0.3s;
         }
 
-        /* HERO PRODUCTOS */
+        .nav-links a:hover {
+            color: var(--blanco);
+        }
+
+        /* --- HERO BANNER DE PRODUCTOS --- */
         .hero-productos {
             position: relative;
             width: 100%;
-            height: 40vh;
-            min-height: 300px;
+            height: 55vh; 
+            min-height: 350px;
             background: url('productos/hero-productos.jpg') no-repeat center center/cover;
             display: flex;
             align-items: center;
@@ -49,94 +54,81 @@
             text-align: center;
             color: white;
         }
+
         .hero-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.5); 
             z-index: 1;
         }
-        .hero-content { position: relative; z-index: 2; }
-        .hero-content h1 { font-size: 3rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
 
-        /* SECCIÓN DE TARJETAS DE CATÁLOGO */
-        .catalogos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            padding: 5rem 5%;
-            max-width: 1200px;
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            font-family: var(--fuente-principal);
+            color: var(--oro);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #f4f4f4;
+        }
+
+        /* --- ESTILOS PARA LA SECCIÓN DE PDFS --- */
+        .seccion-catalogos-pdf {
+            padding: 60px 5%;
+            background-color: var(--blanco);
+        }
+
+        .tarjetas-pdf-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
-        .card-catalogo {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        .tarjeta-pdf {
+            background: var(--rosa-claro);
+            padding: 30px;
+            border-radius: 12px;
             text-align: center;
-            transition: transform 0.3s ease;
-            border: 1px solid #eee;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            max-width: 350px;
+            width: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-bottom: 4px solid transparent;
         }
 
-        .card-catalogo:hover {
-            transform: translateY(-10px);
+        .tarjeta-pdf:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-bottom: 4px solid var(--oro);
         }
 
-        .card-body {
-            padding: 40px;
-        }
-
-        .card-body i {
-            font-size: 4rem;
-            color: var(--rosa-palo);
+        .tarjeta-pdf i.icono-pdf {
+            font-size: 3.5rem;
+            color: #e74c3c; /* Color rojo clásico de PDF */
             margin-bottom: 20px;
-        }
-
-        .card-body h2 {
-            font-size: 1.8rem;
-            color: var(--negro-mate);
-            margin-bottom: 25px;
-        }
-
-        .botones-group {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .btn-abrir {
-            background-color: var(--negro-mate);
-            color: white;
-            padding: 15px;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .btn-descargar {
-            background-color: transparent;
-            color: var(--oro);
-            border: 2px solid var(--oro);
-            padding: 13px;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .btn-descargar:hover {
-            background-color: var(--oro);
-            color: white;
         }
 
         @media (max-width: 768px) {
             .nav-logo-img { height: 100px; }
-            .hero-content h1 { font-size: 2rem; }
-            .catalogos-grid { padding: 3rem 5%; }
+            .navbar { min-height: 100px; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-content p { font-size: 1rem; }
         }
     </style>
 </head>
@@ -146,10 +138,16 @@
         <div class="top-banner">
             <p>✨ Distribuidores de Küül y KolorShot | Envíos y asesoría profesional ✨</p>
         </div>
-        <nav class="navbar">
+
+        <nav class="navbar" aria-label="Navegación principal">
             <a href="index.html">
                 <img src="logos/logo-sin-fondo.png" alt="Maya Belleza Logo" class="nav-logo-img">
             </a>
+            
+            <div class="menu-toggle" id="mobile-menu" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </div>
+
             <ul class="nav-links" id="nav-links">
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="nosotros.html">Nosotros</a></li>
@@ -163,40 +161,40 @@
         <section class="hero-productos">
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1>Catálogos Profesionales</h1>
+                <h1>Nuestros Catálogos</h1>
+                <p>Descubre la calidad profesional en cada aplicación. Soluciones expertas para cuidado capilar, colorimetría y más.</p>
             </div>
         </section>
 
-        <section class="catalogos-grid">
-            <div class="card-catalogo">
-                <div class="card-body">
-                    <i class="fas fa-palette"></i>
-                    <h2>Küül Color System</h2>
-                    <div class="botones-group">
-                        <a href="productos/kuul-catalogo-productos-nuevo_260117_173813.pdf" target="_blank" class="btn-abrir">
-                            <i class="fas fa-expand"></i> Ver en Pantalla Completa
-                        </a>
-                        <a href="productos/kuul-catalogo-productos-nuevo_260117_173813.pdf" download class="btn-descargar">
-                            <i class="fas fa-download"></i> Descargar PDF
-                        </a>
-                    </div>
+        <section class="seccion-catalogos-pdf">
+            <h2 style="text-align: center; margin-bottom: 40px; color: var(--rosa-palo); font-size: 2.2rem; font-family: var(--fuente-principal);">Catálogos Oficiales</h2>
+            
+            <div class="tarjetas-pdf-container">
+                <div class="tarjeta-pdf">
+                    <i class="fas fa-file-pdf icono-pdf"></i>
+                    <h3 style="color: var(--negro-mate); margin-bottom: 15px; font-family: var(--fuente-principal); font-size: 1.5rem;">KolorShot Profesional</h3>
+                    <p style="color: #666; margin-bottom: 25px; font-family: 'Segoe UI', sans-serif;">Descubre la línea completa de coloración, decolorantes y cuidado capilar profesional.</p>
+                    <a href="productos/KolorShotProfesional_Catalogo2023_260117_162846.pdf" target="_blank" class="btn-principal" style="width: 100%;">
+                        <i class="fas fa-download" style="margin-right: 8px;"></i> Ver Catálogo
+                    </a>
                 </div>
-            </div>
 
-            <div class="card-catalogo">
-                <div class="card-body">
-                    <i class="fas fa-magic"></i>
-                    <h2>KolorShot Profesional</h2>
-                    <div class="botones-group">
-                        <a href="productos/KolorShotProfesional_Catalogo2023_260117_162846.pdf" target="_blank" class="btn-abrir">
-                            <i class="fas fa-expand"></i> Ver en Pantalla Completa
-                        </a>
-                        <a href="productos/KolorShotProfesional_Catalogo2023_260117_162846.pdf" download class="btn-descargar">
-                            <i class="fas fa-download"></i> Descargar PDF
-                        </a>
-                    </div>
+                <div class="tarjeta-pdf">
+                    <i class="fas fa-file-pdf icono-pdf"></i>
+                    <h3 style="color: var(--negro-mate); margin-bottom: 15px; font-family: var(--fuente-principal); font-size: 1.5rem;">Küül Color System</h3>
+                    <p style="color: #666; margin-bottom: 25px; font-family: 'Segoe UI', sans-serif;">Explora las tendencias, tonos vibrantes y tratamientos especializados de la familia Küül.</p>
+                    <a href="productos/kuul-catalogo-productos-nuevo_260117_173813.pdf" target="_blank" class="btn-principal" style="width: 100%;">
+                        <i class="fas fa-download" style="margin-right: 8px;"></i> Ver Catálogo
+                    </a>
                 </div>
             </div>
+        </section>
+
+        <section style="padding: 50px 0; background-color: var(--rosa-claro);">
+            <h2 style="text-align: center; margin-bottom: 30px; color: var(--rosa-palo); font-size: 2.2rem; font-family: var(--fuente-principal);">Inventario Destacado</h2>
+            
+            <div id="contenedor-productos"></div>
+            
         </section>
     </main>
 
@@ -230,13 +228,13 @@
             </div>
         </div>
         <hr style="border: 0; border-top: 1px solid #444; margin-bottom: 20px;">
-        <p style="text-align: center; font-size: 0.8rem; color: #777;">&copy; 2026 Maya Productos de Belleza. Todos los derechos reservados.</p>
+        <p style="text-align: center; color: #888; font-size: 0.9rem;">&copy; 2024 Maya Productos de Belleza. Todos los derechos reservados.</p>
     </footer>
 
-    <a href="https://wa.me/527228603383?text=Hola,%20qu%C3%A9%20tal!%20Visit%C3%A9%20su%20p%C3%A1gina%20web%20y%20me%20gustar%C3%ADa%20cotizar%20algunos%20productos%20de%20belleza" 
-       class="whatsapp-float" target="_blank" rel="noopener">
+    <a href="https://wa.me/527228603383?text=Hola,%20qu%C3%A9%20tal!%20Me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20productos" class="whatsapp-float" target="_blank" aria-label="Chat en WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <script src="app.js"></script>
 </body>
 </html>
