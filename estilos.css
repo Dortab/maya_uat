@@ -204,3 +204,133 @@ body {
 .whatsapp-float:hover { 
     transform: scale(1.1); 
 }
+
+/* --- ESTILOS DEL CARRITO DE COMPRAS --- */
+
+/* Botón flotante */
+.carrito-flotante {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--rosa-palo);
+    color: var(--blanco);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 999;
+    transition: transform 0.3s ease;
+}
+
+.carrito-flotante:hover {
+    transform: scale(1.1);
+}
+
+#contador-carrito {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--negro-mate);
+    color: var(--blanco);
+    font-size: 0.8rem;
+    font-weight: bold;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Panel lateral oculto por defecto */
+.panel-carrito {
+    position: fixed;
+    top: 0;
+    right: -400px; /* Escondido fuera de la pantalla */
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background-color: var(--blanco);
+    box-shadow: -2px 0 15px rgba(0,0,0,0.1);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.4s ease;
+}
+
+/* Clase que le pondremos con JS para abrirlo */
+.panel-carrito.abierto {
+    right: 0;
+}
+
+.carrito-header {
+    padding: 20px;
+    background-color: var(--rosa-claro);
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-cerrar {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--negro-mate);
+}
+
+.carrito-body {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.carrito-footer {
+    padding: 20px;
+    border-top: 1px solid #eee;
+    background-color: var(--blanco);
+}
+
+/* Fondo oscuro (Overlay) */
+.carrito-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+}
+
+.carrito-overlay.abierto {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* --- Estilos para las tarjetas dinámicas --- */
+.select-tonos {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: var(--fuente-principal);
+    background-color: var(--rosa-claro);
+    color: var(--negro-mate);
+    cursor: pointer;
+}
+
+.tarjeta-categoria {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
