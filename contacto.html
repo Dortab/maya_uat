@@ -4,16 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto | Maya Productos de Belleza</title>
-
-    <meta name="description" content="Maya Productos de Belleza - Distribuidores autorizados de Küül y KolorShot en el Estado de México. Cosméticos, tintes, maquillaje y cuidado capilar profesional para estéticas y público en general.">
-    <meta name="keywords" content="Maya cosméticos, Maya productos de belleza, distribuidor Küül Estado de México, distribuidor KolorShot, tintes profesionales, productos para estéticas, cuidado capilar, belleza profesional, maquillaje, venta de cosméticos, productos de belleza Toluca">
-    <meta name="author" content="Maya Productos de Belleza">
-    <meta name="robots" content="index, follow">
-    
-    <meta property="og:title" content="Maya Productos de Belleza | Calidad Profesional">
-    <meta property="og:description" content="Descubre nuestra línea de productos Küül y KolorShot. Envíos y asesoría en el Estado de México.">
-    <meta property="og:image" content="logos/logo-sin-fondo.png">
-    <meta property="og:type" content="website">
     
     <link rel="stylesheet" href="estilos.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
@@ -36,108 +26,112 @@
             align-items: center;
         }
 
-        /* ¡PASO 1 APLICADO! 
-           Se eliminó la regla .nav-links para que el menú móvil funcione con estilos.css */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
 
         .nav-links a {
             text-decoration: none;
             color: var(--negro-mate);
-            font-size: 1.1rem;
+            font-size: 1.3rem; 
             font-weight: 600;
-            transition: color 0.3s;
         }
 
-        .nav-links a:hover {
-            color: var(--blanco);
-        }
-
-        /* --- ESTILOS DE LA SECCIÓN DE CONTACTO --- */
-        .contacto-header {
-            background-color: var(--negro-mate);
-            color: var(--blanco);
-            padding: 50px 5%;
-            text-align: center;
-        }
-
-        .contacto-header h1 {
-            color: var(--oro);
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            font-family: var(--fuente-principal);
-        }
-
+        /* DISEÑO SECCIÓN CONTACTO */
         .contacto-container {
-            padding: 60px 5%;
-            max-width: 800px;
+            padding: 5rem 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .form-contacto {
-            background: var(--blanco);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
-            border-top: 5px solid var(--rosa-palo);
+        .info-contacto h2 {
+            font-size: 2.8rem;
+            color: var(--rosa-palo);
+            margin-bottom: 20px;
         }
 
-        .grupo-input {
+        .info-contacto p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .dato-contacto {
+            display: flex;
+            align-items: center;
+            gap: 20px;
             margin-bottom: 25px;
         }
 
-        .grupo-input label {
+        .dato-contacto i {
+            font-size: 1.5rem;
+            color: var(--oro);
+            width: 30px;
+        }
+
+        .dato-contacto span {
+            font-size: 1.1rem;
+            color: var(--negro-mate);
+            font-weight: 500;
+        }
+
+        /* FORMULARIO PROFESIONAL CON FORMSPREE */
+        .formulario-contacto {
+            background: var(--blanco);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
             display: block;
             margin-bottom: 8px;
-            font-weight: bold;
+            font-weight: 600;
             color: var(--negro-mate);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        .form-contacto input, 
-        .form-contacto textarea {
+        .form-group input, .form-group textarea {
             width: 100%;
-            padding: 15px;
+            padding: 12px;
             border: 1px solid #ddd;
             border-radius: 8px;
+            font-family: inherit;
             font-size: 1rem;
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #fafafa;
-            transition: all 0.3s ease;
-        }
-
-        .form-contacto input:focus, 
-        .form-contacto textarea:focus {
-            outline: none;
-            border-color: var(--oro);
-            box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
-            background-color: var(--blanco);
+            outline-color: var(--rosa-palo);
         }
 
         .btn-enviar {
             background-color: var(--negro-mate);
-            color: var(--blanco);
+            color: white;
+            padding: 15px 30px;
             border: none;
-            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
             width: 100%;
             font-size: 1.1rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
             transition: all 0.3s ease;
-            border-radius: 8px;
-            margin-top: 10px;
         }
 
         .btn-enviar:hover {
-            background-color: var(--oro);
+            background-color: var(--rosa-palo);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
 
         @media (max-width: 768px) {
             .nav-logo-img { height: 100px; }
-            .navbar { min-height: 100px; }
-            .form-contacto { padding: 25px; }
+            .nav-links a { font-size: 1.1rem; }
+            .info-contacto h2 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -148,15 +142,14 @@
             <p>✨ Distribuidores de Küül y KolorShot | Envíos y asesoría profesional ✨</p>
         </div>
 
-        <nav class="navbar" aria-label="Navegación principal">
+        <nav class="navbar">
             <a href="index.html">
                 <img src="logos/logo-sin-fondo.png" alt="Maya Belleza Logo" class="nav-logo-img">
             </a>
-            
+
             <div class="menu-toggle" id="mobile-menu" aria-label="Abrir menú">
                 <i class="fas fa-bars"></i>
             </div>
-
             <ul class="nav-links" id="nav-links">
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="nosotros.html">Nosotros</a></li>
@@ -167,36 +160,54 @@
     </header>
 
     <main>
-        <section class="contacto-header">
-            <h1>Contáctanos</h1>
-            <p style="font-family: 'Segoe UI', sans-serif; font-size: 1.1rem;">¿Tienes dudas sobre algún producto o buscas una cotización para tu estética? Escríbenos.</p>
-        </section>
+        <div class="contacto-container">
+            <div class="info-contacto">
+                <h2>Ponte en Contacto</h2>
+                <p>¿Tienes dudas sobre algún tono o producto? Estamos listos para brindarte asesoría profesional personalizada.</p>
+                
+                <div class="dato-contacto">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>722 860 3383</span>
+                </div>
+                <div class="dato-contacto">
+                    <i class="fas fa-envelope"></i>
+                    <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="eb9b99848f9e889f84988f8e898e87878e918a868a928aab8c868a8287c5888486">[email&#160;protected]</a></span>
+                </div>
+                <div class="dato-contacto">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Estado de México, México</span>
+                </div>
+            </div>
 
-        <section class="contacto-container">
-            <form class="form-contacto" action="https://formspree.io/f/TU_CODIGO_AQUI" method="POST">
-                <div class="grupo-input">
-                    <label for="nombre">Nombre Completo</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Ej. Ana Pérez" required>
-                </div>
-                
-                <div class="grupo-input">
-                    <label for="correo">Correo Electrónico</label>
-                    <input type="email" id="correo" name="correo" placeholder="tu@correo.com" required>
-                </div>
-                
-                <div class="grupo-input">
-                    <label for="telefono">Teléfono / WhatsApp</label>
-                    <input type="tel" id="telefono" name="telefono" placeholder="A 10 dígitos" maxlength="10" pattern="[0-9]{10}" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
-                </div>
-                
-                <div class="grupo-input">
-                    <label for="mensaje">¿En qué podemos ayudarte?</label>
-                    <textarea id="mensaje" name="mensaje" rows="5" placeholder="Me interesa cotizar la línea de tintes Küül..." required></textarea>
-                </div>
-                
-                <button type="submit" class="btn-enviar">Enviar Mensaje <i class="fas fa-paper-plane" style="margin-left: 8px;"></i></button>
-            </form>
-        </section>
+            <div class="formulario-contacto">
+                <form action="https://formspree.io/f/mojnbybd" method="POST">
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" name="nombre" placeholder="Ingresa tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono (10 dígitos)</label>
+                        <input type="tel" 
+                               name="telefono"
+                               placeholder="Ej: 7228603383" 
+                               maxlength="10" 
+                               pattern="[0-9]{10}" 
+                               oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                               title="Ingresa los 10 dígitos numéricos de tu teléfono"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Electrónico</label>
+                        <input type="email" name="email" placeholder="productosdebellezamaya@gmail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Asunto o Mensaje</label>
+                        <textarea name="mensaje" rows="4" placeholder="¿Cómo podemos ayudarte?"></textarea>
+                    </div>
+                    <button type="submit" class="btn-enviar">ENVIAR</button>
+                </form>
+            </div>
+        </div>
     </main>
 
     <footer style="background-color: var(--negro-mate); color: var(--blanco); padding: 4rem 5% 2rem 5%;">
@@ -217,7 +228,7 @@
             <div>
                 <h4 style="color: var(--rosa-palo); margin-bottom: 20px;">Contacto</h4>
                 <p style="color: #bbb; margin-bottom: 10px;"><i class="fas fa-phone-alt" style="color: var(--oro); margin-right: 10px;"></i> 722 860 3383</p>
-                <p style="color: #bbb;"><i class="fas fa-envelope" style="color: var(--oro); margin-right: 10px;"></i> productosdebellezamaya@gmail.com</p>
+                <p style="color: #bbb;"><i class="fas fa-envelope" style="color: var(--oro); margin-right: 10px;"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="afdfddc0cbdaccdbc0dccbcacdcac3c3cad5cec2ced6ceefc8c2cec6c381ccc0c2">[email&#160;protected]</a></p>
             </div>
             <div>
                 <h4 style="color: var(--rosa-palo); margin-bottom: 20px;">Síguenos</h4>
@@ -229,10 +240,10 @@
             </div>
         </div>
         <hr style="border: 0; border-top: 1px solid #444; margin-bottom: 20px;">
-        <p style="text-align: center; color: #888; font-size: 0.9rem;">&copy; 2024 Maya Productos de Belleza. Todos los derechos reservados.</p>
+        <p style="text-align: center; font-size: 0.8rem; color: #777;">&copy; 2026 Maya Productos de Belleza. Todos los derechos reservados.</p>
     </footer>
 
-    <a href="https://wa.me/527228603383?text=Hola,%20qu%C3%A9%20tal!%20Me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20productos" class="whatsapp-float" target="_blank" aria-label="Chat en WhatsApp">
+    <a href="https://wa.me/527228603383?text=get="_blank" rel="noopener">
         <i class="fab fa-whatsapp"></i>
     </a>
 

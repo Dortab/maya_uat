@@ -7,7 +7,7 @@
     --fuente-principal: 'Playfair Display', serif;
 }
 
-/* --- Configuración General --- */
+/* Configuración General */
 html {
     scroll-behavior: smooth;
 }
@@ -25,7 +25,7 @@ body {
     line-height: 1.6;
 }
 
-/* --- Barra Superior --- */
+/* --- Navegación --- */
 .top-banner {
     background-color: var(--negro-mate);
     color: var(--blanco);
@@ -34,7 +34,6 @@ body {
     font-size: 0.9rem;
 }
 
-/* --- Navegación Principal --- */
 .navbar {
     background-color: var(--rosa-palo);
     padding: 1rem 5%;
@@ -42,295 +41,150 @@ body {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    position: relative; /* Importante para el menú móvil */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-logo-img {
+    height: 50px;
+    transition: transform 0.3s ease;
+}
+
+.nav-logo-img:hover {
+    transform: scale(1.05);
 }
 
 .nav-links {
-    display: flex;
     list-style: none;
-    gap: 35px;
+    display: flex;
+    gap: 25px;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: var(--negro-mate);
-    font-size: 1.1rem;
+    color: var(--blanco);
     font-weight: 600;
-    transition: color 0.3s;
+    transition: 0.3s;
 }
 
 .nav-links a:hover {
-    color: var(--blanco);
+    color: var(--negro-mate);
 }
 
-/* --- Botón del Menú (Oculto en PC) --- */
+/* Menú Móvil */
 .menu-toggle {
     display: none;
-    color: var(--negro-mate); /* Contrastará perfecto con el rosa palo */
-    font-size: 1.8rem;
+    color: var(--blanco);
+    font-size: 1.5rem;
     cursor: pointer;
 }
 
-/* --- RESPONSIVE: MENÚ MÓVIL --- */
 @media (max-width: 768px) {
-    .menu-toggle {
-        display: block; /* Muestra las 3 rayitas en celular */
-    }
-
+    .menu-toggle { display: block; }
     .nav-links {
-        display: none; /* Oculto por defecto */
+        display: none;
         flex-direction: column;
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
         background-color: var(--rosa-palo);
-        padding: 20px 0;
+        padding: 20px;
         text-align: center;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-        z-index: 999;
     }
-
-    /* Esta clase la activa tu archivo app.js */
-    .nav-links.active {
-        display: flex; 
-    }
-
-    .nav-links li {
-        padding: 15px 0;
-    }
+    .nav-links.active { display: flex; }
 }
 
-/* --- Categorías Visuales (Las tarjetas redondas del Inicio) --- */
-.grid-categorias-visuales { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-    gap: 30px; 
-    padding: 2rem 5%; 
+/* --- Secciones Principales --- */
+.seccion-categorias {
+    padding: 4rem 5%;
+    text-align: center;
 }
 
-.cat-visual-item { 
-    text-decoration: none; 
-    color: var(--negro-mate); 
-    text-align: center; 
-    transition: transform 0.3s; 
+.grid-categorias-visuales {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
 }
 
-.cat-visual-item:hover { 
-    transform: translateY(-10px); 
-    color: var(--oro); 
+.cat-visual-item {
+    text-decoration: none;
+    color: var(--negro-mate);
+    transition: 0.3s;
 }
 
-.cat-img-wrapper { 
-    width: 200px; 
-    height: 200px; 
-    margin: 0 auto 15px; 
-    border-radius: 50%; 
-    overflow: hidden; 
-    border: 5px solid var(--blanco); 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+.cat-img-wrapper {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid var(--blanco);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-.cat-img-wrapper img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
+.cat-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-/* --- Tarjetas de Productos Dinámicas (JS / CSV) --- */
-#contenedor-productos { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 25px; 
-    padding: 2rem 5%; 
+/* --- Tarjetas de Productos (JS) --- */
+#contenedor-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 2rem 5%;
 }
 
-.tarjeta-categoria { 
-    background: var(--blanco); 
-    padding: 25px; 
-    border-radius: 12px; 
-    text-align: center; 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
-    transition: transform 0.3s; 
+.tarjeta-categoria {
+    background: var(--blanco);
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
 }
 
-.tarjeta-categoria:hover { 
-    transform: translateY(-8px); 
+.tarjeta-categoria:hover { transform: translateY(-8px); }
+
+.tarjeta-categoria img {
+    max-width: 100%;
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 15px;
 }
 
-.tarjeta-categoria img { 
-    max-width: 100%; 
-    height: 200px; 
-    object-fit: contain; 
-    margin-bottom: 15px; 
+.btn-principal {
+    display: inline-block;
+    background-color: var(--oro);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: 0.3s;
 }
 
-/* --- Botones Generales --- */
-.btn-principal { 
-    display: inline-block; 
-    background-color: var(--negro-mate); 
-    color: var(--blanco); 
-    padding: 10px 20px; 
-    text-decoration: none; 
-    border-radius: 5px; 
-    transition: background 0.3s; 
-    font-weight: bold;
-}
+.btn-principal:hover { background-color: #b8952d; }
 
-.btn-principal:hover { 
-    background-color: var(--oro); 
-}
-
-/* --- Botón WhatsApp Flotante --- */
-.whatsapp-float { 
-    position: fixed; 
-    bottom: 30px; 
-    right: 30px; 
-    background-color: #25D366; 
-    color: white; 
-    border-radius: 50%; 
-    width: 60px; 
-    height: 60px; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    font-size: 30px; 
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.2); 
-    z-index: 1000; 
-    transition: transform 0.3s; 
-    text-decoration: none; 
-}
-
-.whatsapp-float:hover { 
-    transform: scale(1.1); 
-}
-
-/* --- ESTILOS DEL CARRITO DE COMPRAS --- */
-
-/* Botón flotante */
-.carrito-flotante {
+/* WhatsApp Flotante */
+.whatsapp-float {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background-color: var(--rosa-palo);
-    color: var(--blanco);
+    bottom: 25px;
+    right: 25px;
+    background: #25d366;
+    color: white;
     width: 60px;
     height: 60px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    cursor: pointer;
-    z-index: 999;
-    transition: transform 0.3s ease;
-}
-
-.carrito-flotante:hover {
-    transform: scale(1.1);
-}
-
-#contador-carrito {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: var(--negro-mate);
-    color: var(--blanco);
-    font-size: 0.8rem;
-    font-weight: bold;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Panel lateral oculto por defecto */
-.panel-carrito {
-    position: fixed;
-    top: 0;
-    right: -400px; /* Escondido fuera de la pantalla */
-    width: 100%;
-    max-width: 400px;
-    height: 100vh;
-    background-color: var(--blanco);
-    box-shadow: -2px 0 15px rgba(0,0,0,0.1);
-    z-index: 1001;
-    display: flex;
-    flex-direction: column;
-    transition: right 0.4s ease;
-}
-
-/* Clase que le pondremos con JS para abrirlo */
-.panel-carrito.abierto {
-    right: 0;
-}
-
-.carrito-header {
-    padding: 20px;
-    background-color: var(--rosa-claro);
-    border-bottom: 1px solid #eee;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.btn-cerrar {
-    background: none;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--negro-mate);
-}
-
-.carrito-body {
-    flex-grow: 1;
-    padding: 20px;
-    overflow-y: auto;
-}
-
-.carrito-footer {
-    padding: 20px;
-    border-top: 1px solid #eee;
-    background-color: var(--blanco);
-}
-
-/* Fondo oscuro (Overlay) */
-.carrito-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s;
-}
-
-.carrito-overlay.abierto {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* --- Estilos para las tarjetas dinámicas --- */
-.select-tonos {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-family: var(--fuente-principal);
-    background-color: var(--rosa-claro);
-    color: var(--negro-mate);
-    cursor: pointer;
-}
-
-.tarjeta-categoria {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    font-size: 30px;
+    box-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+    z-index: 2000;
+    text-decoration: none;
 }

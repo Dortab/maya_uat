@@ -5,16 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Maya Productos de Belleza - Distribuidores autorizados de Küül y KolorShot en el Estado de México. Calidad profesional para tu cabello.">
     <title>Maya Productos de Belleza | Inicio</title>
-
-    <meta name="description" content="Maya Productos de Belleza - Distribuidores autorizados de Küül y KolorShot en el Estado de México. Cosméticos, tintes, maquillaje y cuidado capilar profesional para estéticas y público en general.">
-    <meta name="keywords" content="Maya cosméticos, Maya productos de belleza, distribuidor Küül Estado de México, distribuidor KolorShot, tintes profesionales, productos para estéticas, cuidado capilar, belleza profesional, maquillaje, venta de cosméticos, productos de belleza Toluca">
-    <meta name="author" content="Maya Productos de Belleza">
-    <meta name="robots" content="index, follow">
-    
-    <meta property="og:title" content="Maya Productos de Belleza | Calidad Profesional">
-    <meta property="og:description" content="Descubre nuestra línea de productos Küül y KolorShot. Envíos y asesoría en el Estado de México.">
-    <meta property="og:image" content="logos/logo-sin-fondo.png">
-    <meta property="og:type" content="website">
     
     <link rel="stylesheet" href="estilos.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
@@ -39,16 +29,18 @@
             align-items: center;
         }
 
-        /* ¡PASO 1 APLICADO! 
-           Se eliminó la regla .nav-links que bloqueaba el menú en celulares.
-           Ahora respetará el responsive de tu archivo estilos.css
-        */
+        /* AJUSTE DE TAMAÑO DE MENÚ */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px; /* Más espacio entre opciones */
+        }
 
         .nav-links a {
             text-decoration: none;
             color: var(--negro-mate);
-            font-size: 1.3rem; 
-            font-weight: 600;  
+            font-size: 1.3rem; /* Menú más grande y legible */
+            font-weight: 600;  /* Un poco más de grosor */
             transition: color 0.3s;
         }
 
@@ -169,22 +161,23 @@
             <div>
                 <h4 style="color: var(--rosa-palo); margin-bottom: 20px;">Contacto</h4>
                 <p style="color: #bbb; margin-bottom: 10px;"><i class="fas fa-phone-alt" style="color: var(--oro); margin-right: 10px;"></i> 722 860 3383</p>
-                <p style="color: #bbb;"><i class="fas fa-envelope" style="color: var(--oro); margin-right: 10px;"></i> productosdebellezamaya@gmail.com</p>
+                <p style="color: #bbb;"><i class="fas fa-envelope" style="color: var(--oro); margin-right: 10px;"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ff8f8d909b8a9c8b908c9b9a9d9a93939a859e929e869ebf98929e9693d19c9092">[email&#160;protected]</a></p>
             </div>
             <div>
                 <h4 style="color: var(--rosa-palo); margin-bottom: 20px;">Síguenos</h4>
                 <div style="display: flex; gap: 20px;">
-                    <a href="https://www.facebook.com/people/Maya-Productos-de-Belleza/61586921962355/" target="_blank" style="color: white; font-size: 1.8rem;"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.facebook.com/people/get="_blank" style="color: white; font-size: 1.8rem;"><i class="fab fa-facebook"></i></a>
                     <a href="https://www.instagram.com/mayaproductosbelleza?igsh=MWtkOWV3eDN0MDk5dQ==" target="_blank" style="color: white; font-size: 1.8rem;"><i class="fab fa-instagram"></i></a>
                     <a href="https://wa.me/527228603383?text=Hola,%20qu%C3%A9%20tal!%20Visit%C3%A9%20su%20p%C3%A1gina%20web%20y%20me%20gustar%C3%ADa%20cotizar%20algunos%20productos%20de%20belleza" target="_blank" style="color: white; font-size: 1.8rem;"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
         <hr style="border: 0; border-top: 1px solid #444; margin-bottom: 20px;">
-        <p style="text-align: center; color: #888; font-size: 0.9rem;">&copy; 2024 Maya Productos de Belleza. Todos los derechos reservados.</p>
+        <p style="text-align: center; font-size: 0.8rem; color: #777;">&copy; 2026 Maya Productos de Belleza. Todos los derechos reservados.</p>
     </footer>
 
-    <a href="https://wa.me/527228603383?text=Hola,%20qu%C3%A9%20tal!%20Me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20productos" class="whatsapp-float" target="_blank" aria-label="Chat en WhatsApp">
+    <a href="https://wa.me/527228603383?text=Hola,%20qu%C3%A9%20tal!%20Visit%C3%A9%20su%20p%C3%A1gina%20web%20y%20me%20gustar%C3%ADa%20cotizar%20algunos%20productos%20de%20belleza" 
+       class="whatsapp-float" target="_blank" rel="noopener">
         <i class="fab fa-whatsapp"></i>
     </a>
 
