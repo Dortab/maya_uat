@@ -4,39 +4,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('mobile-menu');
     const navLinks = document.getElementById('nav-links');
 
+    function cerrarMenu() {
+        navLinks.classList.remove('active');
+        const icon = menuToggle.querySelector('i');
+        icon.classList.add('fa-bars');
+        icon.classList.remove('fa-times');
+    }
+
+    function abrirMenu() {
+        navLinks.classList.add('active');
+        const icon = menuToggle.querySelector('i');
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+    }
+
     if (menuToggle && navLinks) {
 
         // Abrir / cerrar al tocar la hamburguesa
         menuToggle.addEventListener('click', (e) => {
             e.stopPropagation();
-            navLinks.classList.toggle('active');
-            const icon = menuToggle.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
+            if (navLinks.classList.contains('active')) {
+                cerrarMenu();
+            } else {
+                abrirMenu();
+            }
         });
 
         // Cerrar al tocar cualquier enlace del menú
         navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                const icon = menuToggle.querySelector('i');
-                icon.classList.add('fa-bars');
-                icon.classList.remove('fa-times');
-            });
+            link.addEventListener('click', () => cerrarMenu());
         });
 
         // Cerrar al tocar fuera del menú
         document.addEventListener('click', (e) => {
-            if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-                navLinks.classList.remove('active');
-                const icon = menuToggle.querySelector('i');
-                icon.classList.add('fa-bars');
-                icon.classList.remove('fa-times');
+            if (navLinks.classList.contains('active') &&
+                !menuToggle.contains(e.target) &&
+                !navLinks.contains(e.target)) {
+                cerrarMenu();
             }
+        });
+
+        // Cerrar con tecla Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') cerrarMenu();
         });
     }
 
-    // 2. Footer dinámico (Paso 4 — Fase 2)
+    // 2. Footer dinámico
     const footerPlaceholder = document.getElementById('footer-placeholder');
     if (footerPlaceholder) {
         fetch('footer.html')
@@ -63,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!respuesta.ok) throw new Error("No se pudo cargar el archivo");
 
             const texto = await respuesta.text();
-            const lineas = texto.split('\n').slice(1); // Saltar encabezado
+            const lineas = texto.split('\n').slice(1);
 
             const fragmento = document.createDocumentFragment();
 
@@ -75,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const tarjeta = document.createElement('div');
                 tarjeta.className = 'tarjeta-categoria';
 
-                // Formatear precio
                 const precioNum = parseFloat(precio).toLocaleString('es-MX', {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2

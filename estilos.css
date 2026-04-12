@@ -8,9 +8,7 @@
 }
 
 /* Configuración General */
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 * {
     margin: 0;
@@ -25,7 +23,9 @@ body {
     line-height: 1.6;
 }
 
-/* --- Navegación --- */
+/* =====================================================
+   NAVEGACIÓN (unificado — antes duplicado en cada HTML)
+   ===================================================== */
 .top-banner {
     background-color: var(--negro-mate);
     color: var(--blanco);
@@ -36,7 +36,8 @@ body {
 
 .navbar {
     background-color: var(--rosa-palo);
-    padding: 1rem 5%;
+    padding: 0.5rem 5%;
+    min-height: 120px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -47,30 +48,30 @@ body {
 }
 
 .nav-logo-img {
-    height: 50px;
+    height: 150px;
+    width: auto;
+    padding: 10px 0;
+    display: block;
     transition: transform 0.3s ease;
 }
 
-.nav-logo-img:hover {
-    transform: scale(1.05);
-}
+.nav-logo-img:hover { transform: scale(1.05); }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 25px;
+    gap: 35px;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: var(--blanco);
+    color: var(--negro-mate);
+    font-size: 1.3rem;
     font-weight: 600;
-    transition: 0.3s;
+    transition: color 0.3s;
 }
 
-.nav-links a:hover {
-    color: var(--negro-mate);
-}
+.nav-links a:hover { color: var(--blanco); }
 
 /* Menú Móvil */
 .menu-toggle {
@@ -82,6 +83,11 @@ body {
 
 @media (max-width: 768px) {
     .menu-toggle { display: block; }
+    .nav-logo-img { height: 100px; }
+    .navbar {
+        min-height: 100px;
+        position: relative; /* necesario para que el dropdown se posicione correctamente */
+    }
     .nav-links {
         display: none;
         flex-direction: column;
@@ -92,11 +98,48 @@ body {
         background-color: var(--rosa-palo);
         padding: 20px;
         text-align: center;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        z-index: 999;
     }
     .nav-links.active { display: flex; }
+    .nav-links a { font-size: 1.1rem; }
 }
 
-/* --- Secciones Principales --- */
+/* =====================================================
+   INDEX — Hero y Categorías
+   ===================================================== */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    min-height: 450px;
+    background: url('productos/hero-catalogo.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
 .seccion-categorias {
     padding: 4rem 5%;
     text-align: center;
@@ -131,7 +174,261 @@ body {
     object-fit: cover;
 }
 
-/* --- Tarjetas de Productos (JS) --- */
+@media (max-width: 768px) {
+    .hero-content h1 { font-size: 2.5rem; }
+}
+
+/* =====================================================
+   NOSOTROS
+   ===================================================== */
+.nosotros-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    padding: 5rem 5%;
+    align-items: center;
+    background-color: var(--blanco);
+}
+
+.nosotros-imagen-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 20px 20px 0px var(--rosa-palo);
+}
+
+.nosotros-texto h2 {
+    font-size: 3rem;
+    color: var(--rosa-palo);
+    margin-bottom: 25px;
+}
+
+.nosotros-texto p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+.destaque-oro {
+    color: var(--oro);
+    font-weight: 700;
+}
+
+.valores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 5rem 5%;
+    background-color: var(--rosa-claro);
+}
+
+.valor-card {
+    background: white;
+    padding: 40px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.valor-card i {
+    font-size: 3.5rem;
+    color: var(--oro);
+    margin-bottom: 20px;
+}
+
+@media (max-width: 992px) {
+    .nosotros-wrapper { grid-template-columns: 1fr; text-align: center; }
+    .nosotros-imagen-container img { max-width: 500px; margin: 0 auto; }
+}
+
+/* =====================================================
+   CONTACTO
+   ===================================================== */
+.contacto-container {
+    padding: 5rem 5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.info-contacto h2 {
+    font-size: 2.8rem;
+    color: var(--rosa-palo);
+    margin-bottom: 20px;
+}
+
+.info-contacto p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.dato-contacto {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.dato-contacto i {
+    font-size: 1.5rem;
+    color: var(--oro);
+    width: 30px;
+}
+
+.dato-contacto span {
+    font-size: 1.1rem;
+    color: var(--negro-mate);
+    font-weight: 500;
+}
+
+.formulario-contacto {
+    background: var(--blanco);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.form-group { margin-bottom: 20px; }
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--negro-mate);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    outline-color: var(--rosa-palo);
+}
+
+.btn-enviar {
+    background-color: var(--negro-mate);
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-enviar:hover {
+    background-color: var(--rosa-palo);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .info-contacto h2 { font-size: 2.2rem; }
+}
+
+/* =====================================================
+   PRODUCTOS — Hero y Catálogos
+   ===================================================== */
+.hero-productos {
+    position: relative;
+    width: 100%;
+    height: 40vh;
+    min-height: 300px;
+    background: url('productos/hero-productos.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.catalogos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    padding: 5rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card-catalogo {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 1px solid #eee;
+}
+
+.card-catalogo:hover { transform: translateY(-10px); }
+
+.card-body { padding: 40px; }
+
+.card-body i {
+    font-size: 4rem;
+    color: var(--rosa-palo);
+    margin-bottom: 20px;
+}
+
+.card-body h2 {
+    font-size: 1.8rem;
+    color: var(--negro-mate);
+    margin-bottom: 25px;
+}
+
+.botones-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn-abrir {
+    background-color: var(--negro-mate);
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-descargar {
+    background-color: transparent;
+    color: var(--oro);
+    border: 2px solid var(--oro);
+    padding: 13px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn-descargar:hover {
+    background-color: var(--oro);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 { font-size: 2rem; }
+    .catalogos-grid { padding: 3rem 5%; }
+}
+
+/* =====================================================
+   TARJETAS DE PRODUCTOS (cargadas por JS)
+   ===================================================== */
 #contenedor-productos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -170,7 +467,9 @@ body {
 
 .btn-principal:hover { background-color: #b8952d; }
 
-/* WhatsApp Flotante */
+/* =====================================================
+   WHATSAPP FLOTANTE
+   ===================================================== */
 .whatsapp-float {
     position: fixed;
     bottom: 25px;
@@ -187,4 +486,7 @@ body {
     box-shadow: 2px 4px 10px rgba(0,0,0,0.3);
     z-index: 2000;
     text-decoration: none;
+    transition: transform 0.3s ease;
 }
+
+.whatsapp-float:hover { transform: scale(1.1); }
