@@ -10,36 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* NAVEGACIÓN Y LOGO (Unificado con Index) */
-        .nav-logo-img {
-            height: 150px; 
-            width: auto;
-            padding: 10px 0;
-            display: block;
-        }
-
-        .navbar {
-            padding: 0.5rem 5%;
-            min-height: 120px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 35px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--negro-mate);
-            font-size: 1.3rem; 
-            font-weight: 600;
-        }
-
-        /* DISEÑO DE LA SECCIÓN NOSOTROS */
+/* DISEÑO DE LA SECCIÓN NOSOTROS */
         .nosotros-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -100,11 +71,6 @@
         @media (max-width: 992px) {
             .nosotros-wrapper { grid-template-columns: 1fr; text-align: center; }
             .nosotros-imagen-container img { max-width: 500px; margin: 0 auto; }
-        }
-
-        @media (max-width: 768px) {
-            .nav-logo-img { height: 100px; }
-            .nav-links a { font-size: 1.1rem; }
         }
     </style>
 </head>
