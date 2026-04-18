@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogos Oficiales | Maya Productos de Belleza</title>
-    
+    <title>Productos | Maya Productos de Belleza</title>
+
     <link rel="stylesheet" href="estilos.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -19,58 +19,114 @@
             <a href="index.html">
                 <img src="logos/logo-sin-fondo.png" alt="Maya Belleza Logo" class="nav-logo-img">
             </a>
-
             <div class="menu-toggle" id="mobile-menu" aria-label="Abrir menú">
                 <i class="fas fa-bars"></i>
             </div>
             <ul class="nav-links" id="nav-links">
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="nosotros.html">Nosotros</a></li>
-                <li><a href="productos.html">Catálogos</a></li>
+                <li><a href="productos.html">Productos</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
+
+        <!-- HERO -->
         <section class="hero-productos">
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1>Catálogos Profesionales</h1>
+                <h1>Nuestros Catálogos</h1>
+                <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9); max-width: 500px; margin: 0 auto;">
+                    Descubre la calidad profesional en cada aplicación. Soluciones expertas para cuidado capilar, colorimetría y más.
+                </p>
             </div>
         </section>
 
-        <section class="catalogos-grid">
-            <div class="card-catalogo">
-                <div class="card-body">
-                    <i class="fas fa-palette"></i>
-                    <h2>Küül Color System</h2>
-                    <div class="botones-group">
-                        <a href="productos/kuul-catalogo-productos-nuevo_260117_173813.pdf" target="_blank" class="btn-abrir">
-                            <i class="fas fa-expand"></i> Ver en Pantalla Completa
-                        </a>
-                        <a href="productos/kuul-catalogo-productos-nuevo_260117_173813.pdf" download class="btn-descargar">
-                            <i class="fas fa-download"></i> Descargar PDF
-                        </a>
+        <!-- NAVEGACIÓN DE SECCIONES -->
+        <nav class="seccion-nav">
+            <a href="#capilar" class="seccion-nav-btn"><i class="fas fa-cut"></i> Capilar</a>
+            <a href="#pestanas" class="seccion-nav-btn"><i class="fas fa-eye"></i> Pestañas y Cejas</a>
+            <a href="#unas" class="seccion-nav-btn"><i class="fas fa-hand-sparkles"></i> Uñas</a>
+            <a href="#catalogos" class="seccion-nav-btn"><i class="fas fa-book-open"></i> Catálogos PDF</a>
+        </nav>
+
+        <!-- SECCIÓN: CAPILAR -->
+        <section id="capilar" class="seccion-productos">
+            <div class="seccion-header">
+                <i class="fas fa-cut"></i>
+                <h2>Capilar</h2>
+                <p>Tintes y productos profesionales para el cuidado del cabello</p>
+            </div>
+            <div class="contenedor-grid" id="grid-capilar">
+                <p class="cargando">Cargando productos...</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: PESTAÑAS Y CEJAS -->
+        <section id="pestanas" class="seccion-productos seccion-alterna">
+            <div class="seccion-header">
+                <i class="fas fa-eye"></i>
+                <h2>Pestañas y Cejas</h2>
+                <p>Adhesivos, rizadores y herramientas profesionales</p>
+            </div>
+            <div class="contenedor-grid" id="grid-pestanas">
+                <p class="cargando">Cargando productos...</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: UÑAS -->
+        <section id="unas" class="seccion-productos">
+            <div class="seccion-header">
+                <i class="fas fa-hand-sparkles"></i>
+                <h2>Uñas</h2>
+                <p>Productos y accesorios para el cuidado de uñas</p>
+            </div>
+            <div class="contenedor-grid" id="grid-unas">
+                <p class="cargando">Cargando productos...</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: CATÁLOGOS PDF -->
+        <section id="catalogos" class="seccion-productos seccion-alterna">
+            <div class="seccion-header">
+                <i class="fas fa-book-open"></i>
+                <h2>Catálogos PDF</h2>
+                <p>Descarga o consulta nuestros catálogos completos de marcas</p>
+            </div>
+            <div class="catalogos-grid">
+                <div class="card-catalogo">
+                    <div class="card-body">
+                        <i class="fas fa-palette"></i>
+                        <h2>Küül Color System</h2>
+                        <div class="botones-group">
+                            <a href="productos/kuul-catalogo-productos-nuevo_260117_173813.pdf" target="_blank" class="btn-abrir">
+                                <i class="fas fa-expand"></i> Ver en Pantalla Completa
+                            </a>
+                            <a href="productos/kuul-catalogo-productos-nuevo_260117_173813.pdf" download class="btn-descargar">
+                                <i class="fas fa-download"></i> Descargar PDF
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="card-catalogo">
-                <div class="card-body">
-                    <i class="fas fa-magic"></i>
-                    <h2>KolorShot Profesional</h2>
-                    <div class="botones-group">
-                        <a href="productos/KolorShotProfesional_Catalogo2023_260117_162846.pdf" target="_blank" class="btn-abrir">
-                            <i class="fas fa-expand"></i> Ver en Pantalla Completa
-                        </a>
-                        <a href="productos/KolorShotProfesional_Catalogo2023_260117_162846.pdf" download class="btn-descargar">
-                            <i class="fas fa-download"></i> Descargar PDF
-                        </a>
+                <div class="card-catalogo">
+                    <div class="card-body">
+                        <i class="fas fa-magic"></i>
+                        <h2>KolorShot Profesional</h2>
+                        <div class="botones-group">
+                            <a href="productos/KolorShotProfesional_Catalogo2023_260117_162846.pdf" target="_blank" class="btn-abrir">
+                                <i class="fas fa-expand"></i> Ver en Pantalla Completa
+                            </a>
+                            <a href="productos/KolorShotProfesional_Catalogo2023_260117_162846.pdf" download class="btn-descargar">
+                                <i class="fas fa-download"></i> Descargar PDF
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+
     </main>
 
     <footer style="background-color: var(--negro-mate); color: var(--blanco); padding: 4rem 5% 2rem 5%;">
@@ -84,7 +140,7 @@
                 <ul style="list-style: none; padding: 0;">
                     <li><a href="index.html" style="color: #bbb; text-decoration: none;">Inicio</a></li>
                     <li><a href="nosotros.html" style="color: #bbb; text-decoration: none;">Nosotros</a></li>
-                    <li><a href="productos.html" style="color: #bbb; text-decoration: none;">Catálogos</a></li>
+                    <li><a href="productos.html" style="color: #bbb; text-decoration: none;">Productos</a></li>
                     <li><a href="contacto.html" style="color: #bbb; text-decoration: none;">Contacto</a></li>
                 </ul>
             </div>

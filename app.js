@@ -64,58 +64,76 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(err => console.error('Error cargando footer:', err));
     }
 
-    // 3. Carga Dinámica de Productos desde CSV
-    const contenedor = document.getElementById('contenedor-productos');
+    // 3. Carga Dinámica de Productos desde JSON por sección
+    const secciones = {
+        'Capilar':          document.getElementById('grid-capilar'),
+        'Pestañas y Cejas': document.getElementById('grid-pestanas'),
+        'Uñas':             document.getElementById('grid-unas'),
+    };
 
-    if (contenedor) {
-        cargarInventario();
-    }
+    const hayGrids = Object.values(secciones).some(el => el !== null);
+    if (hayGrids) cargarInventario();
 
     async function cargarInventario() {
         try {
-            const respuesta = await fetch('inventario.csv');
-            if (!respuesta.ok) throw new Error("No se pudo cargar el archivo");
+            const respuesta = await fetch('inventario.json');
+            if (!respuesta.ok) throw new Error("No se pudo cargar el inventario");
 
-            const texto = await respuesta.text();
-            const lineas = texto.split('\n').slice(1);
+            const productos = await respuesta.json();
 
-            const fragmento = document.createDocumentFragment();
+            // Limpiar mensajes de carga
+            Object.values(secciones).forEach(grid => {
+                if (grid) grid.innerHTML = '';
+            });
 
-            lineas.forEach(linea => {
-                if (linea.trim() === '') return;
-
-                const [id, categoria, nombre, descripcion, precio, imagen] = linea.split(',');
-
-                const tarjeta = document.createElement('div');
-                tarjeta.className = 'tarjeta-categoria';
+            productos.forEach(producto => {
+                const { nombre, categoria, descripcion, precio, imagen, tonos } = producto;
+                const grid = secciones[categoria];
+                if (!grid) return; // ignorar categorías no mapeadas
 
                 const precioNum = parseFloat(precio).toLocaleString('es-MX', {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2
                 });
 
+                const tonosHTML = tonos && tonos.length > 0 ? `
+                    <div class="tonos-container">
+                        <label class="tonos-label">Tono:</label>
+                        <select class="tonos-select">
+                            <option value="">-- Selecciona un tono --</option>
+                            ${tonos.map(t => `<option value="${t}">${t}</option>`).join('')}
+                        </select>
+                    </div>
+                ` : '';
+
+                const tarjeta = document.createElement('div');
+                tarjeta.className = 'tarjeta-categoria';
                 tarjeta.innerHTML = `
-                    <img src="productos/${imagen.trim()}" alt="${nombre.trim()}" loading="lazy">
-                    <small style="color: var(--oro); text-transform: uppercase;">${categoria.trim()}</small>
-                    <h3 style="margin: 10px 0;">${nombre.trim()}</h3>
-                    <p style="font-size: 0.9rem; color: #666; height: 50px; overflow: hidden;">${descripcion.trim()}</p>
+                    <img src="productos/${imagen}" alt="${nombre}" loading="lazy">
+                    <h3 style="margin: 10px 0;">${nombre}</h3>
+                    <p style="font-size: 0.9rem; color: #666; min-height: 50px;">${descripcion}</p>
+                    ${tonosHTML}
                     <p style="font-size: 1.25rem; font-weight: bold; margin: 15px 0;">$${precioNum} MXN</p>
-                    <a href="https://wa.me/527228603383?text=Hola! Me interesa el producto: ${encodeURIComponent(nombre.trim())}" 
+                    <a href="https://wa.me/527228603383?text=Hola! Me interesa el producto: ${encodeURIComponent(nombre)}" 
                        target="_blank" rel="noopener" class="btn-principal">
                        <i class="fab fa-whatsapp"></i> Pedir ahora
                     </a>
                 `;
-                fragmento.appendChild(tarjeta);
+                grid.appendChild(tarjeta);
             });
 
-            contenedor.innerHTML = '';
-            contenedor.appendChild(fragmento);
+            // Si alguna sección quedó vacía, mostrar mensaje
+            Object.entries(secciones).forEach(([cat, grid]) => {
+                if (grid && grid.children.length === 0) {
+                    grid.innerHTML = `<p class="sin-productos">No hay productos disponibles en esta categoría por el momento.</p>`;
+                }
+            });
 
         } catch (error) {
             console.error("Error:", error);
-            if (contenedor) {
-                contenedor.innerHTML = '<p style="text-align:center; padding: 2rem; color:#666;">Error al cargar el catálogo. Por favor intenta más tarde.</p>';
-            }
+            Object.values(secciones).forEach(grid => {
+                if (grid) grid.innerHTML = '<p class="sin-productos">Error al cargar productos. Por favor intenta más tarde.</p>';
+            });
         }
     }
 });
