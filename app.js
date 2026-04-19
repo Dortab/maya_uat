@@ -87,38 +87,67 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             productos.forEach(producto => {
-                const { nombre, categoria, descripcion, precio, imagen, tonos } = producto;
+                const { id, nombre, categoria, descripcion, precio, imagen, tonos } = producto;
                 const grid = secciones[categoria];
-                if (!grid) return; // ignorar categorías no mapeadas
+                if (!grid) return;
 
                 const precioNum = parseFloat(precio).toLocaleString('es-MX', {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2
                 });
 
+                // A3: Convertir saltos de línea del JSON en <br>
+                const descripcionHTML = descripcion
+                    ? descripcion.replace(/\n/g, '<br>')
+                    : '';
+
+                // A4: Selector de tonos con ID único
+                const selectId = `tono-${id}`;
                 const tonosHTML = tonos && tonos.length > 0 ? `
                     <div class="tonos-container">
-                        <label class="tonos-label">Tono:</label>
-                        <select class="tonos-select">
-                            <option value="">-- Selecciona un tono --</option>
+                        <label class="tonos-label" for="${selectId}">Selecciona tu tono:</label>
+                        <select class="tonos-select" id="${selectId}">
+                            <option value="">-- Elige un tono --</option>
                             ${tonos.map(t => `<option value="${t}">${t}</option>`).join('')}
                         </select>
                     </div>
                 ` : '';
 
+                // A4: Link base de WhatsApp (para productos sin tonos)
+                const waMensajeBase = `Hola! Me interesa el producto: ${encodeURIComponent(nombre)}`;
+                const waLinkBase = `https://wa.me/527228603383?text=${waMensajeBase}`;
+
                 const tarjeta = document.createElement('div');
                 tarjeta.className = 'tarjeta-categoria';
                 tarjeta.innerHTML = `
-                    <img src="productos/${imagen}" alt="${nombre}" loading="lazy">
-                    <h3 style="margin: 10px 0;">${nombre}</h3>
-                    <p style="font-size: 0.9rem; color: #666; min-height: 50px;">${descripcion}</p>
+                    <img src="productos/${imagen}" alt="${nombre}" loading="lazy"
+                         onerror="this.style.display='none'">
+                    <small class="tarjeta-categoria-label">${categoria}</small>
+                    <h3 class="tarjeta-nombre">${nombre}</h3>
+                    <div class="tarjeta-descripcion">${descripcionHTML}</div>
                     ${tonosHTML}
-                    <p style="font-size: 1.25rem; font-weight: bold; margin: 15px 0;">$${precioNum} MXN</p>
-                    <a href="https://wa.me/527228603383?text=Hola! Me interesa el producto: ${encodeURIComponent(nombre)}" 
-                       target="_blank" rel="noopener" class="btn-principal">
+                    <p class="tarjeta-precio">$${precioNum} <span>MXN</span></p>
+                    <a href="${waLinkBase}"
+                       class="btn-principal btn-wa"
+                       target="_blank" rel="noopener">
                        <i class="fab fa-whatsapp"></i> Pedir ahora
                     </a>
                 `;
+
+                // A4: Si tiene tonos, el botón construye el mensaje dinámicamente al hacer click
+                if (tonos && tonos.length > 0) {
+                    const btn = tarjeta.querySelector('.btn-wa');
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const select = tarjeta.querySelector(`#${selectId}`);
+                        const tonoElegido = select ? select.value : '';
+                        const mensaje = tonoElegido
+                            ? `Hola! Me interesa el producto: ${nombre} — Tono: ${tonoElegido}`
+                            : `Hola! Me interesa el producto: ${nombre} (aún no elegí tono, ¿me pueden asesorar?)`;
+                        window.open(`https://wa.me/527228603383?text=${encodeURIComponent(mensaje)}`, '_blank', 'noopener');
+                    });
+                }
+
                 grid.appendChild(tarjeta);
             });
 
