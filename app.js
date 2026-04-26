@@ -87,67 +87,38 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             productos.forEach(producto => {
-                const { id, nombre, categoria, descripcion, precio, imagen, tonos } = producto;
+                const { nombre, categoria, descripcion, precio, imagen, tonos } = producto;
                 const grid = secciones[categoria];
-                if (!grid) return;
+                if (!grid) return; // ignorar categorías no mapeadas
 
                 const precioNum = parseFloat(precio).toLocaleString('es-MX', {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2
                 });
 
-                // A3: Convertir saltos de línea del JSON en <br>
-                const descripcionHTML = descripcion
-                    ? descripcion.replace(/\n/g, '<br>')
-                    : '';
-
-                // A4: Selector de tonos con ID único
-                const selectId = `tono-${id}`;
                 const tonosHTML = tonos && tonos.length > 0 ? `
                     <div class="tonos-container">
-                        <label class="tonos-label" for="${selectId}">Selecciona tu tono:</label>
-                        <select class="tonos-select" id="${selectId}">
-                            <option value="">-- Elige un tono --</option>
+                        <label class="tonos-label">Tono:</label>
+                        <select class="tonos-select">
+                            <option value="">-- Selecciona un tono --</option>
                             ${tonos.map(t => `<option value="${t}">${t}</option>`).join('')}
                         </select>
                     </div>
                 ` : '';
 
-                // A4: Link base de WhatsApp (para productos sin tonos)
-                const waMensajeBase = `Hola! Me interesa el producto: ${encodeURIComponent(nombre)}`;
-                const waLinkBase = `https://wa.me/527228603383?text=${waMensajeBase}`;
-
                 const tarjeta = document.createElement('div');
                 tarjeta.className = 'tarjeta-categoria';
                 tarjeta.innerHTML = `
-                    <img src="productos/${imagen}" alt="${nombre}" loading="lazy"
-                         onerror="this.style.display='none'">
-                    <small class="tarjeta-categoria-label">${categoria}</small>
-                    <h3 class="tarjeta-nombre">${nombre}</h3>
-                    <div class="tarjeta-descripcion">${descripcionHTML}</div>
+                    <img src="productos/${imagen}" alt="${nombre}" loading="lazy">
+                    <h3 style="margin: 10px 0;">${nombre}</h3>
+                    <p style="font-size: 0.9rem; color: #666; min-height: 50px;">${descripcion}</p>
                     ${tonosHTML}
-                    <p class="tarjeta-precio">$${precioNum} <span>MXN</span></p>
-                    <a href="${waLinkBase}"
-                       class="btn-principal btn-wa"
-                       target="_blank" rel="noopener">
+                    <p style="font-size: 1.25rem; font-weight: bold; margin: 15px 0;">$${precioNum} MXN</p>
+                    <a href="https://wa.me/527228603383?text=Hola! Me interesa el producto: ${encodeURIComponent(nombre)}" 
+                       target="_blank" rel="noopener" class="btn-principal">
                        <i class="fab fa-whatsapp"></i> Pedir ahora
                     </a>
                 `;
-
-                // A4: Si tiene tonos, el botón construye el mensaje dinámicamente al hacer click
-                if (tonos && tonos.length > 0) {
-                    const btn = tarjeta.querySelector('.btn-wa');
-                    btn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const select = tarjeta.querySelector(`#${selectId}`);
-                        const tonoElegido = select ? select.value : '';
-                        const mensaje = tonoElegido
-                            ? `Hola! Me interesa el producto: ${nombre} — Tono: ${tonoElegido}`
-                            : `Hola! Me interesa el producto: ${nombre} (aún no elegí tono, ¿me pueden asesorar?)`;
-                        window.open(`https://wa.me/527228603383?text=${encodeURIComponent(mensaje)}`, '_blank', 'noopener');
-                    });
-                }
-
                 grid.appendChild(tarjeta);
             });
 
@@ -157,6 +128,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     grid.innerHTML = `<p class="sin-productos">No hay productos disponibles en esta categoría por el momento.</p>`;
                 }
             });
+
+            // B2/B3: Scroll a la sección correcta DESPUÉS de cargar productos
+            // El navegador hace el scroll inicial antes de que JS llene las secciones,
+            // por eso hay que volver a hacer scroll una vez que el contenido ya tiene altura real
+            const ancla = window.location.hash;
+            if (ancla) {
+                setTimeout(() => {
+                    const seccion = document.querySelector(ancla);
+                    if (seccion) {
+                        const navbar = document.querySelector('.navbar');
+                        const seccionNav = document.querySelector('.seccion-nav');
+                        const offsetNavbar = navbar ? navbar.offsetHeight : 0;
+                        const offsetSeccionNav = seccionNav ? seccionNav.offsetHeight : 0;
+                        const offsetTotal = offsetNavbar + offsetSeccionNav + 20;
+                        const top = seccion.getBoundingClientRect().top + window.scrollY - offsetTotal;
+                        window.scrollTo({ top, behavior: 'smooth' });
+                    }
+                }, 100); // pequeño delay para asegurar que el DOM está renderizado
+            }
 
         } catch (error) {
             console.error("Error:", error);
