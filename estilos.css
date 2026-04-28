@@ -8,7 +8,7 @@
 }
 
 /* Configuración General */
-html { scroll-behavior: auto; }
+html { scroll-behavior: smooth; }
 
 * {
     margin: 0;
@@ -242,6 +242,39 @@ body {
     .nosotros-imagen-container img { max-width: 500px; margin: 0 auto; }
 }
 
+.mapa-container {
+    display: block;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.mapa-container:hover .mapa-overlay {
+    background: rgba(216, 167, 177, 0.92);
+}
+
+.mapa-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background: rgba(45, 45, 45, 0.75);
+    color: white;
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
 /* =====================================================
    CONTACTO
    ===================================================== */
@@ -347,7 +380,7 @@ body {
     background-color: var(--blanco);
     border-bottom: 2px solid var(--rosa-claro);
     position: sticky;
-    top: 120px;
+    top: 0;
     z-index: 900;
 }
 
